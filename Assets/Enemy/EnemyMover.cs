@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     List<Waypoint> path = new List<Waypoint>();
@@ -30,7 +31,11 @@ public class EnemyMover : MonoBehaviour
         {
             foreach(Transform child in pathParent.transform)
             {
-                path.Add(child.GetComponent<Waypoint>());
+                Waypoint waypoint = child.GetComponent<Waypoint>();
+                if (waypoint != null)
+                {
+                    path.Add(waypoint);
+                }
             }
         }
     }
@@ -42,13 +47,13 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        foreach(Waypoint waypoint in path)
+        foreach (Waypoint waypoint in path)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;
             transform.LookAt(endPosition);
             float lerpFactor = 0f;
-            while(lerpFactor < 1f)
+            while (lerpFactor < 1f)
             {
                 Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, lerpFactor);
                 transform.position = newPosition;
@@ -56,6 +61,11 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+        FinishPath();
+    }
+
+    private void FinishPath()
+    {
         enemy.WithdrawBank();
         gameObject.SetActive(false);
     }
