@@ -16,8 +16,8 @@ MonoBehaviour:
   material: {fileID: 6697973246280852366}
   materialHashCode: -112767127
   m_Version: 1.1.0
-  m_SourceFontFileGUID: a539d03d220d010449134545500dc9a9
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a539d03d220d010449134545500dc9a9, type: 3}
+  m_SourceFontFileGUID: 5058fc687d16b464182c69da85e4d355
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 5058fc687d16b464182c69da85e4d355, type: 3}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
@@ -1866,7 +1866,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - UNDERLAY_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -1944,8 +1945,8 @@ Material:
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
+    - _UnderlayOffsetX: 0.48
+    - _UnderlayOffsetY: -1
     - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0

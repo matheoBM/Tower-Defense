@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHitPoints = 5;
+
+    [Tooltip("The amount added to enemy max health after it dies")]
+    [SerializeField] int healthRamp = 1;
 
     int currentHitPoints = 0;
     Enemy enemy;
@@ -17,11 +21,6 @@ public class EnemyHealth : MonoBehaviour
     void OnEnable()
     {
         currentHitPoints = maxHitPoints;
-    }
-
-    void Update()
-    {
-        
     }
 
     void AddRigidbody()
@@ -43,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
         {
             gameObject.SetActive(false);
             enemy.DepositBank();
+            maxHitPoints += healthRamp; //Increase deficulty
         }
     }
 }
