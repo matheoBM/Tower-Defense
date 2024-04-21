@@ -11,7 +11,7 @@ public class EnemyMover : MonoBehaviour
 
     Enemy enemy;
 
-    void Awake()
+    void Start()
     {
         enemy = GetComponent<Enemy>();
     }

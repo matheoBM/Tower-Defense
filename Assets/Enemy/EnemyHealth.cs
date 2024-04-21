@@ -27,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
+        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void OnParticleCollision(GameObject other)
