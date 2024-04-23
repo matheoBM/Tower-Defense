@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoints: 5
+  healthRamp: 2
 --- !u!65 &8394433419763225746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -178,3 +179,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd873a3f9e6cc4d8aa6f998c0bb4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyReward: 25
+  moneyPenalty: 25
