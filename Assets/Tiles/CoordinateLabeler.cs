@@ -11,20 +11,24 @@ public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white; 
     [SerializeField] Color blockedColor = Color.grey;
+    [SerializeField] Color exploredColor = Color.blue;
+    [SerializeField] Color pathColor = Color.red;
 
     TMP_Text label;
     Vector2Int coordinates = new Vector2Int();
     Waypoint waypoint;
+    GridManager gridManager;
 
     void Awake()
     {
         waypoint = GetComponentInParent<Waypoint>();
+        gridManager = FindObjectOfType<GridManager>();
     }
 
     void OnEnable()
     {
         label = GetComponent<TMP_Text>();
-        label.enabled = false;
+        label.enabled = true;
     }
 
     void Update()
@@ -34,6 +38,8 @@ public class CoordinateLabeler : MonoBehaviour
             DisplayCoordinates();
             UpdateObjectName();
         }
+        DisplayCoordinates();
+        UpdateObjectName();
         //Debugging
         UpdateColorCoordinates();
         ToggleLabels();
@@ -49,14 +55,26 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void UpdateColorCoordinates()
     {
-        if (waypoint.IsPlaceable)
-        {
-            label.color = defaultColor;
-        }
-        else
+        if(gridManager == null) { return; }
+        
+        Node node = gridManager.GetNode(coordinates);
+        if(node == null) { return; }   
+        if (!node.isWalkable)
         {
             label.color = blockedColor;
         }
+        else if (node.isPath)
+        {
+            label.color = pathColor;
+        }else if (node.isExplored)
+        {
+            label.color = exploredColor;
+        }
+        else
+        {
+            label.color = defaultColor;
+        }
+
     }
 
     void DisplayCoordinates()

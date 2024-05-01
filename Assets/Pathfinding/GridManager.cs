@@ -8,8 +8,20 @@ public class GridManager : MonoBehaviour
     [SerializeField] Vector2Int gridSize;
 
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+    public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
+    public Node GetNode(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            return grid[coordinates];
+        }
+        else
+        {
+            return null;
+        }
+    }
 
-    void Start()
+    void Awake()
     {
         CreateGrid();
     }
@@ -22,7 +34,6 @@ public class GridManager : MonoBehaviour
             {
                 Vector2Int coordinate = new Vector2Int(i, j);
                 grid.Add(coordinate, new Node(coordinate, true));
-                Debug.Log("Coordinate: " + coordinate + "; Node: " + grid[coordinate].coordinates);
             }
         }
     }
