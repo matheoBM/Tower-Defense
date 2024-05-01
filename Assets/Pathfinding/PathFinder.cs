@@ -7,7 +7,6 @@ public class PathFinder : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoordinates;
     [SerializeField] Vector2Int endCoordinates;
-    [SerializeField] List<Node> path;
 
     Node startNode;
     Node endNode;
@@ -33,10 +32,19 @@ public class PathFinder : MonoBehaviour
     {
         startNode = grid[startCoordinates];
         endNode = grid[endCoordinates];
+        CreateNewPath();
+
+    }
+
+    List<Node> CreateNewPath()
+    {
+        //Reset Grid and Search lists
+        gridManager.ResetGrid();
+        reachedNodes.Clear();
+        frontier.Clear();
 
         BreadthFirstSeach();
-        path = CreatePath();
-
+        return CreatePath();
     }
 
     void BreadthFirstSeach()
@@ -96,7 +104,7 @@ public class PathFinder : MonoBehaviour
         path.Add(currentNode);
         currentNode.isPath = true;
 
-        while((currentNode.coordinates != startNode.coordinates) || (currentNode.connectedTo == null))
+        while((currentNode.coordinates != startNode.coordinates) || (currentNode.connectedTo != null))
         {
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
@@ -105,6 +113,25 @@ public class PathFinder : MonoBehaviour
 
         path.Reverse();
         return path;
+    }
 
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+
+            bool previousState = grid[coordinates].isWalkable;
+            grid[coordinates].isWalkable = false;
+            List<Node> path = CreateNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            if(path.Count <= 1)
+            {
+                CreateNewPath();
+                return true;
+            }
+
+        }
+        return false;
     }
 }

@@ -16,12 +16,12 @@ public class CoordinateLabeler : MonoBehaviour
 
     TMP_Text label;
     Vector2Int coordinates = new Vector2Int();
-    Waypoint waypoint;
+    Tile waypoint;
     GridManager gridManager;
 
     void Awake()
     {
-        waypoint = GetComponentInParent<Waypoint>();
+        waypoint = GetComponentInParent<Tile>();
         gridManager = FindObjectOfType<GridManager>();
     }
 
@@ -85,8 +85,8 @@ public class CoordinateLabeler : MonoBehaviour
             return;
         }
 
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x/ UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z/ UnityEditor.EditorSnapSettings.move.x);
+        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.unityGridSize);
+        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.unityGridSize);
         label.text = $"{coordinates.x},{coordinates.y}";
     }
 
