@@ -6,7 +6,10 @@ using UnityEngine;
 public class PathFinder : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoordinates;
+    public Vector2Int StartCoordinates { get { return startCoordinates; } }
+
     [SerializeField] Vector2Int endCoordinates;
+    public Vector2Int EndCoordinates { get { return endCoordinates; } }
 
     Node startNode;
     Node endNode;
@@ -25,34 +28,41 @@ public class PathFinder : MonoBehaviour
         if(gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            endNode = grid[endCoordinates];
         }
     }
 
     void Start()
     {
-        startNode = grid[startCoordinates];
-        endNode = grid[endCoordinates];
-        CreateNewPath();
-
+        GetNewPath();
     }
 
-    List<Node> CreateNewPath()
+    public List<Node> GetNewPath()
+    {
+        return GetNewPath(startCoordinates);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coordinates)
     {
         //Reset Grid and Search lists
         gridManager.ResetGrid();
-        reachedNodes.Clear();
-        frontier.Clear();
 
-        BreadthFirstSeach();
+        BreadthFirstSeach(coordinates);
         return CreatePath();
     }
 
-    void BreadthFirstSeach()
+    void BreadthFirstSeach(Vector2Int coordinates)
     {
+        grid[coordinates].isWalkable = true;
+        endNode.isWalkable = true; //Garantee that these nodes are walkable for the path finder;
+        frontier.Clear();
+        reachedNodes.Clear();
+
         bool isRunning = true;
         
-        frontier.Enqueue(startNode);
-        reachedNodes.Add(startCoordinates, startNode);
+        frontier.Enqueue(grid[coordinates]);
+        reachedNodes.Add(coordinates, grid[coordinates]);
 
         while (frontier.Count > 0 && isRunning)
         {
@@ -63,7 +73,6 @@ public class PathFinder : MonoBehaviour
                 isRunning = false;
             }
             ExploreNeighbors();
-            Debug.Log("SIZE: " + frontier.Count);
         }
     }
 
@@ -104,7 +113,7 @@ public class PathFinder : MonoBehaviour
         path.Add(currentNode);
         currentNode.isPath = true;
 
-        while((currentNode.coordinates != startNode.coordinates) || (currentNode.connectedTo != null))
+        while((currentNode.connectedTo != null))
         {
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
@@ -122,16 +131,22 @@ public class PathFinder : MonoBehaviour
 
             bool previousState = grid[coordinates].isWalkable;
             grid[coordinates].isWalkable = false;
-            List<Node> path = CreateNewPath();
+            List<Node> path = GetNewPath();
             grid[coordinates].isWalkable = previousState;
 
             if(path.Count <= 1)
             {
-                CreateNewPath();
+                GetNewPath();
                 return true;
             }
 
         }
         return false;
+    }
+
+    public void NotifyReceivers()
+    {
+        Debug.Log("Notificando");
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.RequireReceiver);
     }
 }

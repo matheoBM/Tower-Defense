@@ -37,7 +37,6 @@ public class TargetLocator : MonoBehaviour
                 maxDistance = distance;
                 closestEnemy = enemy.transform;
             }
-            Debug.Log("distance " + distance);
         }
         target = closestEnemy;
     }
