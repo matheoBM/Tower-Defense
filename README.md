@@ -3,7 +3,7 @@
 This is a Tower Defense game in which you defend your castle from invadors. These invadors are trying to take away your money and if the do you lose the game.
 Use the mouse to click on the tile in which you want your balista to be built.
 
-Test the game here
+Test the game [here](https://sharemygame.com/@MatBM/balista-defense-game)
 
 ## Images
 <p align="center">
