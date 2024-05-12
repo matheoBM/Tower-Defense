@@ -94,8 +94,9 @@ GameObject:
   - component: {fileID: 5672325927823913723}
   - component: {fileID: 8615797052724192141}
   - component: {fileID: 7580511432875559103}
-  - component: {fileID: 8394433419763225746}
   - component: {fileID: 254265047749652260}
+  - component: {fileID: 8394433419763225746}
+  - component: {fileID: 4502190410440957901}
   m_Layer: 0
   m_Name: Ram
   m_TagString: Untagged
@@ -146,6 +147,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitPoints: 5
   healthRamp: 2
+  destructSound: {fileID: 8300000, guid: 5df511327e818b347a4a7a55cd98524a, type: 3}
+--- !u!114 &254265047749652260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040643765344069697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cd873a3f9e6cc4d8aa6f998c0bb4da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyReward: 25
+  moneyPenalty: 25
 --- !u!65 &8394433419763225746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,17 +183,189 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.75, y: 4.15, z: 6}
   m_Center: {x: 0.015750885, y: 2.013339, z: 0}
---- !u!114 &254265047749652260
-MonoBehaviour:
+--- !u!82 &4502190410440957901
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5040643765344069697}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cd873a3f9e6cc4d8aa6f998c0bb4da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyReward: 25
-  moneyPenalty: 25
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5df511327e818b347a4a7a55cd98524a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.61
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 1756.7
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00056924915
+      value: 1
+      inSlope: -1757.4104
+      outSlope: -1757.4104
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.0011384983
+      value: 0.5
+      inSlope: -439.3526
+      outSlope: -439.3526
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.0022769966
+      value: 0.25
+      inSlope: -109.83815
+      outSlope: -109.83815
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.004553993
+      value: 0.125
+      inSlope: -27.459538
+      outSlope: -27.459538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.018215973
+      value: 0.03125
+      inSlope: -1.7162211
+      outSlope: -1.7162211
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.02682344
+      value: 0
+      inSlope: -6.8648844
+      outSlope: -6.8648844
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.036431946
+      value: 0.015625
+      inSlope: -0.42905527
+      outSlope: -0.42905527
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.07286389
+      value: 0.0078125
+      inSlope: -0.10726382
+      outSlope: -0.10726382
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.14572778
+      value: 0.00390625
+      inSlope: -0.026815955
+      outSlope: -0.026815955
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.29145557
+      value: 0.001953125
+      inSlope: -0.0067039886
+      outSlope: -0.0067039886
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.58291113
+      value: 0.0009765625
+      inSlope: -0.0016759972
+      outSlope: -0.0016759972
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.00056924915
+      inSlope: -0.0005694761
+      outSlope: -0.0005694761
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

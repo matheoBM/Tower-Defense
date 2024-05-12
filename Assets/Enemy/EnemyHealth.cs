@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,11 @@ public class EnemyHealth : MonoBehaviour
 
     [Tooltip("The amount added to enemy max health after it dies")]
     [SerializeField] int healthRamp = 1;
+    [SerializeField] AudioClip destructSound;
 
     int currentHitPoints = 0;
     Enemy enemy;
+    
 
     void Start()
     {
@@ -41,9 +44,16 @@ public class EnemyHealth : MonoBehaviour
         currentHitPoints--;
         if (currentHitPoints <= 0)
         {
+            PlayDestroyAudio();
             gameObject.SetActive(false);
             enemy.DepositBank();
             maxHitPoints += healthRamp; //Increase deficulty
         }
     }
+
+    void PlayDestroyAudio()
+    {
+        AudioSource.PlayClipAtPoint(destructSound, transform.position);
+    }
+
 }
