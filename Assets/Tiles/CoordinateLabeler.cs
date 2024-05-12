@@ -9,6 +9,7 @@ using TMPro;
 [RequireComponent(typeof(TextMeshPro))]
 public class CoordinateLabeler : MonoBehaviour
 {
+    [SerializeField] bool startEnabled;
     [SerializeField] Color defaultColor = Color.white; 
     [SerializeField] Color blockedColor = Color.grey;
     [SerializeField] Color exploredColor = Color.blue;
@@ -28,7 +29,7 @@ public class CoordinateLabeler : MonoBehaviour
     void OnEnable()
     {
         label = GetComponent<TMP_Text>();
-        label.enabled = true;
+        label.enabled = startEnabled;
     }
 
     void Update()
