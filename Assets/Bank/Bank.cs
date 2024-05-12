@@ -34,10 +34,16 @@ public class Bank : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         UpdateTextOnUI();
+        PlaySound();
     }
-
     void UpdateTextOnUI()
     {
         text.text = $"Coins: {currentBalance}";
+    }
+
+    private void PlaySound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 }
