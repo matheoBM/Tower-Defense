@@ -6,8 +6,14 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] int cost = 75;
-
+    [Tooltip("Time to build each part of the tower")]
+    [SerializeField] int timeToBuildPiece = 2;
     Bank bank;
+
+    void Start()
+    {
+        StartCoroutine(BuildTower());
+    }
 
     public bool PlaceTower(Tower towerPrefab, Vector3 position)
     {
@@ -17,12 +23,24 @@ public class Tower : MonoBehaviour
 
         if(bank.CurentBalance >= cost)
         {
-            Instantiate(towerPrefab, position, Quaternion.identity);
+            GameObject towerTransform = Instantiate(towerPrefab, position, Quaternion.identity).gameObject;
+            foreach (Transform child in towerTransform.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
             bank.Withdraw(cost);
             return true;
         }
 
         return false;
-        
+    }
+
+    IEnumerator BuildTower()
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+        }
     }
 }
